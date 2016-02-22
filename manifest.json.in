@@ -1,0 +1,15 @@
+{
+    "name": "usmartbus.landgraf",
+    "description": "description of uSmartBus",
+    "architecture": "@CLICK_ARCH@",
+    "title": "uSmartBus",
+    "hooks": {
+        "uSmartBus": {
+            "apparmor": "uSmartBus/uSmartBus.apparmor",
+            "desktop": "uSmartBus/uSmartBus.desktop"
+        }
+    },
+    "version": "0.2.1",
+    "maintainer": "Ustin Anton <Landgraf132@yandex.ru>",
+    "framework": "ubuntu-sdk-15.04"
+}

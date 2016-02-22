@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=uSmartBus
+Exec=qmlscene $@ uSmartBus/Main.qml
+Icon=uSmartBus/uSmartBus.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+
