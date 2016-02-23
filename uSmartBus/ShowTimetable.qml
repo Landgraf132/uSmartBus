@@ -1,11 +1,29 @@
 import QtQuick 2.0
 import QtQuick.LocalStorage 2.0
 import Ubuntu.Components 1.3
-import QtQuick.LocalStorage 2.0
+import QtQuick.Window 2.2
 
 import "Main.js" as Main
 
+MainView {
+    // objectName for functional testing purposes (autopilot-qt5)
+    objectName: "ShowTimetable"
 
+
+
+    /*
+     This property enables the application to change orientation
+     when the device is rotated. The default is false.
+    */
+
+
+
+
+
+    width: Screen.desktopAvailableWidth - width
+    height: units.gu(100)
+    Page {
+          title: "Расписание транспорта"
 
 
         Column {
@@ -60,6 +78,7 @@ color:"#888888"
     width:parent.width;height:units.gu(6);
 id:blockTimetableListModel
   Row{
+      id:rowAll
        width:parent.width;height:parent.height;
 Rectangle{
 
@@ -69,7 +88,7 @@ color: "#FEFEFE"
 
         Rectangle{
             id:rectBusNameText
-            width:units.gu(6) ;height:units.gu(4);
+            width:units.gu(8) ;height:units.gu(4);
               color: "#fc4949"
 
 
@@ -94,7 +113,7 @@ color: "#FEFEFE"
 Rectangle{
 
     id:rectTimeLeft
-    width:units.gu(15);height:parent.height;
+    width:units.gu(8);height:parent.height;
     color: "#EBEFF2"
 anchors.left: rectBusNameText.right
     Text{
@@ -109,7 +128,7 @@ color:"#666A6D";
 }
 Rectangle{
     color: "#FEFEFE"
-    width:parent.width-rectTimeLeft.width-rectBusNameText.width  ;height:parent.height;
+    width:units.gu(35)  ;height:parent.height;
 anchors.right: timetableDelegate.right
     Text{
         id:itemDirect
@@ -140,4 +159,5 @@ color:"#666A6D";
 
 
 
-
+}
+}

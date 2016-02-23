@@ -1,4 +1,15 @@
+function launchApp(){
 
+var res=getSetting("firstLaunch");
+      console.log("LAUNSH ? :"+res);
+if (res===0 || res==="yes"){
+
+    saveSetting("firstLaunch","no");
+         return 1
+        }
+
+return 0
+}
 
 var arrayCity  = new Object();
 function getAllStation() {
@@ -8,12 +19,11 @@ function getAllStation() {
     openDB();
 var site = getHostAdress(getSetting("city_rus"));
     var city=getSetting("city");
-console.log("WTFFF2 :"+city);
-    console.log("One: http://bus62.ru/php/getStations.php?city=arhangelsk&info=01234");
+
+
             var url = "http://"+site+"/php/getStations.php?city="+city+"&info=01234";
 
-    console.log("Two: "+url);
-  console.log(url);
+
             xmlhttp.onreadystatechange=function() {
                 if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status == 200) {
                     parseJSON(xmlhttp.responseText);
@@ -152,8 +162,9 @@ arr = JSON.parse(response);
         for(var i = 0; i < arr.length; i++) {
 arrayStation[arr[i].name]=arr[i].desrc;
 arrayStationID[arr[i].name]=arr[i].id;
-
-          if (openDB()!=1)    saveSetting(arr[i].name, arr[i].id);
+var res=getSetting("firstLaunch");
+         if (res===0 || res==="yes")
+            saveSetting(arr[i].name, arr[i].id);
 
   stationModel.append( {"stationName":arr[i].name,"stationDescryption":arr[i].descr});
 
@@ -238,6 +249,7 @@ function getTimetable(){
 
 //var station = parseInt(arrayStationID[globalStation]);
 var stantion_id =  getSetting(stantion)
+
 var site = getHostAdress(getSetting("city_rus"));
 
 
@@ -306,7 +318,8 @@ function saveSetting(key, value) {
         var res = "";
         db.transaction(function(tx) {
             var rs = tx.executeSql('SELECT value FROM settings WHERE key=?;', [key]);
-                        res = rs.rows.item(0).value;
+if (rs.rows.length==0) res=0; else  res = rs.rows.item(0).value;
+
 //}
 
         });

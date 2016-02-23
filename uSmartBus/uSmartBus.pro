@@ -7,7 +7,12 @@ QML_FILES += $$files(*.qml,true) \
              $$files(*.js,true)
 
 CONF_FILES +=  uSmartBus.apparmor \
-               uSmartBus.png
+               uSmartBus.png\
+view-list-symbolic.svg \
+    scope-manager.svg \
+    home.svg \
+    find.svg \
+    compose.svg
 
 AP_TEST_FILES += tests/autopilot/run \
                  $$files(tests/*.py,true)               
@@ -37,5 +42,7 @@ DISTFILES += \
     Main.js \
     SelectStation.qml \
     ShowTimetable.qml \
-    SelectCity.qml
+    SelectCity.qml \
+    MainMenu.qml
+
 
