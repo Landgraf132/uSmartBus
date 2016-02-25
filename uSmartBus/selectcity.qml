@@ -1,27 +1,12 @@
 import QtQuick 2.4
 import QtQuick.LocalStorage 2.0
 import Ubuntu.Components 1.3
+import QtQuick.LocalStorage 2.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import "Main.js" as Main
 
-MainView {
-    // objectName for functional testing purposes (autopilot-qt5)
-    objectName: "SelectCity"
 
 
-
-    /*
-     This property enables the application to change orientation
-     when the device is rotated. The default is false.
-    */
-
-
-
-  headerColor: "#996BC1"
-  width: mainview.width
-  height: mainview.height
-    Page {
-          title: "Выберите город"
         Column {
             spacing: units.gu(1)
             anchors {
@@ -71,7 +56,7 @@ MainView {
                         id:delegateItem
                         width:parent.width;height:units.gu(7);
 
-                        onClicked: {Main.chooseCity(itemCity.text);  pageStack.push(Qt.resolvedUrl("SelectStation.qml")) ; }
+                        onClicked: {Main.chooseCity(itemCity.text);pageStack.push("SelectStation.qml") ; }
                         Text{
                             id:itemCity
                             anchors.left: parent.left
@@ -95,5 +80,4 @@ MainView {
 
 
 }
-}
-}
+

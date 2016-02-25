@@ -19,8 +19,9 @@ MainView {
 
     headerColor: "#996BC1"
 
-    width: units.gu(80)
-    height: units.gu(100)
+   // width: units.gu(80)
+    width: mainview.width
+    height: mainview.height
     Page {
         title: "Главное меню"
 
@@ -50,8 +51,8 @@ MainView {
             width: units.gu(37); height: units.gu(37)
             border.color: "#D4D4D4"
             radius: 10
-            anchors.left:parent.left
-            anchors.leftMargin:units.gu(3)
+
+ anchors.horizontalCenter: parent.horizontalCenter
             anchors.top:parent.top
             anchors.topMargin:units.gu(6)
             GridView {

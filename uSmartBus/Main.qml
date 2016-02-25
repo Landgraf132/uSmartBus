@@ -14,7 +14,7 @@ import "Main.js" as Main
 MainView {
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
-
+id:mainview
     // Note! applicationName needs to match the "name" field of the click manifest
     applicationName: "usmartbus.landgraf"
 

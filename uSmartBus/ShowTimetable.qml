@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.LocalStorage 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Window 2.2
-
+import QtQml 2.0
 import "Main.js" as Main
 
 MainView {
@@ -18,10 +18,11 @@ MainView {
 
 
 
-
-
-    width: Screen.desktopAvailableWidth - width
-    height: units.gu(100)
+  property var locale: Qt.locale()
+    property date currentTime: new Date()
+      property string timeString
+    width: mainview.width
+    height: mainview.height
     Page {
           title: "Расписание транспорта"
 
@@ -36,17 +37,35 @@ MainView {
     height:80
     Item {
         Timer {
-            interval: 5500; running: true; repeat: true
-            onTriggered:Main.getTimetable();
+            interval: 6500; running: true; repeat: true
+            onTriggered: {
+                 Main.getTimetable();
+                currentTime=new Date();
+                timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
+                lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+ timeString+"</b>" ;
+
+               }
         }
 
 
     }
-
+Label{
+    id:lastTimeUpdate
+ anchors.left:parent.left;
+text:"Последний раз обновлялось в: -"
+}
             Button{
+
 id:reloadButton
+ anchors.right:parent.right;
              text:"Обновить\Получить данные";
-            onClicked: Main.getTimetable();
+            onClicked:{
+currentTime=new Date();
+
+                timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
+                lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+timeString+"</b>" ;
+                 Main.getTimetable();
+            }
             }
 
             Item {
@@ -128,7 +147,7 @@ color:"#666A6D";
 }
 Rectangle{
     color: "#FEFEFE"
-    width:units.gu(35)  ;height:parent.height;
+    width:mainview.width-rectTimeLeft.width-rectBusNameBlock.width  ;height:parent.height;
 anchors.right: timetableDelegate.right
     Text{
         id:itemDirect

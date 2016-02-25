@@ -18,9 +18,8 @@ MainView {
 
 
   headerColor: "#996BC1"
-
-    width: units.gu(80)
-    height: units.gu(100)
+  width: mainview.width
+  height: mainview.height
     Page {
           title: "Выберите остановку"
 Column {
