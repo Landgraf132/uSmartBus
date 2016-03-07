@@ -49,11 +49,7 @@ MainView {
 
 
     }
-Label{
-    id:lastTimeUpdate
- anchors.left:parent.left;
-text:"Последний раз обновлялось в: -"
-}
+
             Button{
 
 id:reloadButton
@@ -66,6 +62,14 @@ currentTime=new Date();
                 lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+timeString+"</b>" ;
                  Main.getTimetable();
             }
+            }
+            Label{
+
+                anchors.top:reloadButton.top
+                anchors.topMargin:units.gu(5);
+                id:lastTimeUpdate
+          anchors.right:parent.right;
+            text:"Последний раз обновлялось в: -"
             }
 
             Item {
@@ -86,7 +90,7 @@ currentTime=new Date();
  ListView  {
     Component.onCompleted: { Main.getTimetable();}
         width:anchors.width; height:units.gu(6);
-anchors.top:reloadButton.top
+anchors.top:lastTimeUpdate.top
 anchors.topMargin:units.gu(10);
  Component{
       id:timetableDelegate

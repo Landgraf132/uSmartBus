@@ -25,7 +25,7 @@ MainView {
         Column {
             spacing: units.gu(1)
             anchors {
-                margins: units.gu(2)
+
                 fill: parent
             }
 
@@ -38,6 +38,12 @@ MainView {
                                placeholderText: "Введите имя города"
                                onTextChanged: Main.searchCity( citySearchField.text)
                                font.pixelSize:  units.dp(25)
+                               anchors.top:parent.top;
+                               anchors.left:parent.left;
+                                                     anchors {
+                                                         margins: units.gu(2)
+
+                                                     }
                        }
 
 
@@ -59,7 +65,7 @@ MainView {
 
             UbuntuListView{
  Component.onCompleted: Main.getAllCity()
- anchors { left: parent.left; right: parent.right }
+ anchors { left: parent.left; right: parent.right;  }
                 height: units.gu(24)
 
 

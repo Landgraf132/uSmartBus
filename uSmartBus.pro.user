@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.5.0, 2016-02-25T21:30:57. -->
+<!-- Written by QtCreator 3.5.0, 2016-03-06T20:46:25. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -399,16 +399,18 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">UbuntuProjectManager.UploadStep</value>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles">
-       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.1_armhf.click</value>
-       <value type="QString">/usr/ubuntu-sdk-ide/share/qtcreator/ubuntu/scripts/qtc_device_applaunch.py</value>
-       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.22_armhf.click</value>
-       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.23_armhf.click</value>
-       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.1_armhf.click</value>
-       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2_armhf.click</value>
-       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.21_armhf.click</value>
        <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.2_armhf.click</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.5_armhf.click</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2_armhf.click</value>
+       <value type="QString">/usr/ubuntu-sdk-ide/share/qtcreator/ubuntu/scripts/qtc_device_applaunch.py</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.23_armhf.click</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.21_armhf.click</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.1_armhf.click</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.2.22_armhf.click</value>
+       <value type="QString">/home/landgrafpc/программирование/fun/uSmartBus/build-uSmartBus-Ubuntu_Device_GCC_armhf_ubuntu_sdk_15_04_vivid-Debug/usmartbus.landgraf_0.1_armhf.click</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
+       <value type="QString">127.0.0.1</value>
        <value type="QString">127.0.0.1</value>
        <value type="QString">127.0.0.1</value>
        <value type="QString">127.0.0.1</value>
@@ -427,6 +429,7 @@
        <value type="QString">/tmp</value>
        <value type="QString">/tmp</value>
        <value type="QString">/tmp</value>
+       <value type="QString">/tmp</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedSysroots">
        <value type="QString">/var/lib/schroot/chroots/click-ubuntu-sdk-15.04-armhf</value>
@@ -437,16 +440,18 @@
        <value type="QString">/var/lib/schroot/chroots/click-ubuntu-sdk-15.04-armhf</value>
        <value type="QString">/var/lib/schroot/chroots/click-ubuntu-sdk-15.04-armhf</value>
        <value type="QString">/var/lib/schroot/chroots/click-ubuntu-sdk-15.04-armhf</value>
+       <value type="QString">/var/lib/schroot/chroots/click-ubuntu-sdk-15.04-armhf</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2016-02-23T09:56:35</value>
-       <value type="QDateTime">2016-02-23T12:40:18</value>
-       <value type="QDateTime">2016-02-23T12:38:25</value>
-       <value type="QDateTime">2016-02-23T12:40:18</value>
-       <value type="QDateTime">2016-02-22T00:05:18</value>
-       <value type="QDateTime">2016-02-22T11:20:02</value>
-       <value type="QDateTime">2016-02-23T12:25:19</value>
        <value type="QDateTime">2016-02-23T12:18:46</value>
+       <value type="QDateTime">2016-02-25T22:19:44</value>
+       <value type="QDateTime">2016-02-22T11:20:02</value>
+       <value type="QDateTime">2016-02-25T22:19:44</value>
+       <value type="QDateTime">2016-02-23T12:40:18</value>
+       <value type="QDateTime">2016-02-23T12:25:19</value>
+       <value type="QDateTime">2016-02-23T09:56:35</value>
+       <value type="QDateTime">2016-02-23T12:38:25</value>
+       <value type="QDateTime">2016-02-22T00:05:18</value>
       </valuelist>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">2</value>

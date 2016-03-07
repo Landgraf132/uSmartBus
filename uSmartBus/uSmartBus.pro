@@ -43,6 +43,7 @@ DISTFILES += \
     SelectStation.qml \
     ShowTimetable.qml \
     SelectCity.qml \
-    MainMenu.qml
+    MainMenu.qml \
+    SelectOfTop10Station.qml
 
 

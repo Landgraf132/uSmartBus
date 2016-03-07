@@ -39,7 +39,7 @@ MainView {
                 name: "scope-manager.svg"
             }
             ListElement {
-                textString: "Последние остановки"
+                textString: "Последние 10 остановок"
                 name: "view-list-symbolic.svg"
             }
             ListElement {
@@ -77,7 +77,9 @@ MainView {
                               break
 
                            case "Последние 10 остановок":
-                              textString="dont work";
+                             pageStack.push(Qt.resolvedUrl("SelectOfTop10Station.qml"))
+
+                               console.log("omg");
                               break
                            case "Изменить город":
                               Main.saveSetting("firstLaunch","yes");

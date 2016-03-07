@@ -9,7 +9,7 @@
             "desktop": "uSmartBus/uSmartBus.desktop"
         }
     },
-    "version": "0.2.23",
+    "version": "0.5",
     "maintainer": "Ustin Anton <Landgraf132@yandex.ru>",
     "framework": "ubuntu-sdk-15.04"
 }

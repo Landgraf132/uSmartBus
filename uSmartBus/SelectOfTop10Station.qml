@@ -6,7 +6,7 @@ import Ubuntu.Components.ListItems 1.0 as ListItem
 import "Main.js" as Main
 MainView {
     // objectName for functional testing purposes (autopilot-qt5)
-    objectName: "SelectStation"
+    objectName: "SelectOfTop10Station"
 
 
 
@@ -21,17 +21,12 @@ MainView {
   width: mainview.width
   height: mainview.height
     Page {
-          title: "Выберите остановку"
+          title: "Популярные остановки"
 Column {
 
     width: mainview.width
     height: mainview.height
-    ActivityIndicator {
-        id: activityIndicator
-        anchors.centerIn: parent
-        running: true
-        visible: false
-    }
+
         Column {
 
             anchors {
@@ -62,14 +57,14 @@ anchors.left:parent.left;
 
                  ListModel {
 
-                     id: stationModel
+                     id: stationIdModel
 
 
                  }
             }
 
             UbuntuListView{
- Component.onCompleted: {Main.getAllStation(); Page.title=Main.getSetting("city_rus")}
+ Component.onCompleted: {Main.get10StationScore(); }
  anchors { left: parent.left; right: parent.right; }
                 height:50;
 
@@ -117,31 +112,18 @@ pageStack.push(Qt.resolvedUrl("ShowTimetable.qml"));
                         }
                     }
 
-                id:stationListView
+                id:stationIdListView
                 anchors.top:stationSearchField.top
                    anchors.topMargin:units.gu(15);
                 anchors.fill:parent
-                model:stationModel
+                model:stationIdModel
 
                 spacing:4
 
             }
 
 }
-   //indicator loading
-      /*  states: [
-             State {
-                 name: stationListView
-                 PropertyChanges { target: activityIndicator; visible: false}
 
-             },
-             State {
-                 name: stationListView._stateLoading
-                 PropertyChanges { target: activityIndicator; visible: true}
-
-             }
-         ]
-         */
 }
 
     }
