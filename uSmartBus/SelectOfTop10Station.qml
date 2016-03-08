@@ -17,11 +17,41 @@ MainView {
 
 
 
-  headerColor: "#996BC1"
+     headerColor: UbuntuColors.purple
   width: mainview.width
   height: mainview.height
     Page {
-          title: "Популярные остановки"
+
+           header: PageHeader {
+                     id:pageHeader
+                     Button{
+                          color:"#00000000"
+                         id:headButton
+                         height:parent.height;
+                         width:units.gu(7)
+                     Icon {
+                         anchors.verticalCenter: parent.verticalCenter;
+                             id: leavePage
+                     width:units.gu(4)
+                     height:units.gu(4)
+                         name: "back"
+                         color: "#ffffff"
+                     }
+                     onClicked: pageStack.pop();
+                           }
+             title: "    Популярные остановки"
+
+
+
+                                         StyleHints {
+                                             foregroundColor: "white"
+                                             backgroundColor: UbuntuColors.purple
+                                             dividerColor:  "#974B93"
+                                             contentHeight: units.gu(7)
+                                         }
+
+
+                             }
 Column {
 
     width: mainview.width
@@ -43,7 +73,9 @@ Column {
                     placeholderText: "Введите название остановки"
                     onTextChanged: Main.searchStation(stationSearchField.text)
                       font.pixelSize:  units.dp(25)
+
 anchors.top:parent.top;
+anchors.topMargin:units.dp(60);
 anchors.left:parent.left;
                       anchors {
                           margins: units.gu(2)

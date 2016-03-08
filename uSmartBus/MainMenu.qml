@@ -17,14 +17,29 @@ MainView {
 
 
 
-    headerColor: "#996BC1"
+    headerColor: UbuntuColors.purple
 
    // width: units.gu(80)
     width: mainview.width
     height: mainview.height
     Page {
-        title: "Главное меню"
 
+        header: PageHeader {
+        id:pageHeader
+
+
+
+        title:  "Главное меню";
+
+                            StyleHints {
+                                foregroundColor: "white"
+                                backgroundColor: UbuntuColors.purple
+                                dividerColor:  "#974B93"
+                                contentHeight: units.gu(7)
+                            }
+
+
+                }
 
         ListModel {
             id:menuModel
@@ -39,7 +54,7 @@ MainView {
                 name: "scope-manager.svg"
             }
             ListElement {
-                textString: "Последние 10 остановок"
+                textString: "Частые остановки"
                 name: "view-list-symbolic.svg"
             }
             ListElement {
@@ -54,7 +69,7 @@ MainView {
 
  anchors.horizontalCenter: parent.horizontalCenter
             anchors.top:parent.top
-            anchors.topMargin:units.gu(6)
+            anchors.topMargin:units.gu(12)
             GridView {
                 width: units.gu(34); height: units.gu(34)
                 cellWidth: units.gu(17); cellHeight: units.gu(17)
@@ -76,7 +91,7 @@ MainView {
                               textString="dont work";
                               break
 
-                           case "Последние 10 остановок":
+                           case "Частые остановки":
                              pageStack.push(Qt.resolvedUrl("SelectOfTop10Station.qml"))
 
                                console.log("omg");

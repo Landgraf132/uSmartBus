@@ -1,10 +1,10 @@
 function launchApp(){
 
     var res=getSetting("firstLaunch");
-    console.log("LAUNSH ? :"+res);
+    console.log("LAUNCH ? :"+res);
     if (res===0 || res==="yes"){
 
-        saveSetting("firstLaunch","no");
+
         return 1
     }
 
@@ -107,7 +107,7 @@ function getHostAdress(city){
 
     for (var name in arrayCity){
         if (name==city){
-            // console.log(arrayCity[name]);
+
             return arrayCity[name];
         }
     }
@@ -146,7 +146,7 @@ function getTranslit(city){
 
     for (var name in arrayCity){
         if (name==city){
-            // console.log(arrayCity[name]);
+
             return arrayCity[name];
         }
     }
@@ -164,12 +164,14 @@ function parseJSON(response) {
 
         arrayStationID[arr[i].name]=arr[i].id;
         var res=getSetting("firstLaunch");
-        if (res===0 || res==="yes")
-            saveSetting(arr[i].id, arr[i].name);
+      if (res===0 || res==="yes"){
+            saveStantion(arr[i].id, arr[i].name,arr[i].descr);
 
+      }
         stationModel.append( {"stationName":arr[i].name,"stationDescryption":arr[i].descr,"stationId":arr[i].id});
 
     }
+      if (res===0 || res==="yes")   saveSetting("firstLaunch","no");
 }
 
 
@@ -223,7 +225,7 @@ function searchStation(str){
                 //выведем на экран все элементы
                 stationModel.append( {"stationName": arrayStation[i].name,"stationDescryption":  arrayStation[i].descr,"stationId":arrayStation[i].id});
 
-               // console.log(arrayStation[i].descr);
+
 
 
             }
@@ -249,10 +251,23 @@ function searchCity(str){
     }
 }
 
-function getTop10Station(){
+
+function getCurrentStantionInfo(action){
+     var stantionID=getSetting("currentStation");
+    var stantion;
+if  (action=="name"){
+
+   stantion=getStantion(stantionID);
 
 
+    return stantion;
+} else {
+       stantion=getStantionDescr(stantionID);
 
+
+       return stantion;
+
+}
 }
 
 function getTimetable(){
@@ -308,6 +323,7 @@ function openDB() {
     try {
         db.transaction(function(tx){
             tx.executeSql('CREATE TABLE IF NOT EXISTS settings(key TEXT UNIQUE, value TEXT)');
+             tx.executeSql('CREATE TABLE IF NOT EXISTS stantion(id INTEGER UNIQUE, name TEXT,descr TEXT)');
             tx.executeSql('CREATE TABLE IF NOT EXISTS top10(id INTEGER UNIQUE,name TEXT ,descr TEXT, score INTEGER)');
             tx.executeSql('CREATE TABLE IF NOT EXISTS bookmark(key TEXT UNIQUE, value INTEGER)');
             var table  = tx.executeSql("SELECT * FROM settings");
@@ -336,6 +352,7 @@ function getSetting(key) {
     var res = "";
     db.transaction(function(tx) {
         var rs = tx.executeSql('SELECT value FROM settings WHERE key=?;', [key]);
+
         if (rs.rows.length===0) res=0; else  res = rs.rows.item(0).value;
 
         //}
@@ -343,9 +360,46 @@ function getSetting(key) {
     });
     return res;
 }
+function saveStantion(id, name,descr) {
 
+    openDB();
+    db.transaction( function(tx){
+        tx.executeSql('INSERT OR REPLACE INTO stantion VALUES(?, ?,?)', [id, name,descr]);
+    });
+}
+
+function getStantion(id) {
+
+    openDB();
+    var res = "";
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('SELECT name FROM stantion WHERE id=?;', [id]);
+console.log(id,rs.rows.item(0).name);
+        if (rs.rows.length===0) res=0; else  res = rs.rows.item(0).name;
+
+        //}
+
+    });
+    return res;
+}
+
+
+function getStantionDescr(id) {
+
+    openDB();
+    var res = "";
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('SELECT descr FROM stantion WHERE id=?;', [id]);
+console.log(id,rs.rows.item(0).name);
+        if (rs.rows.length===0) res=0; else  res = rs.rows.item(0).descr;
+
+        //}
+
+    });
+    return res;
+}
 function saveStationScore(id,name,descr, score) {
-    console.log(id+" "+name+" "+descr+" "+score);
+
     openDB();
     db.transaction( function(tx){
         tx.executeSql('INSERT OR REPLACE INTO top10 VALUES(?, ?,?, ?)', [id,name,descr, score]);
@@ -372,7 +426,7 @@ function get10StationScore(){
     openDB();
     var res = "";
     db.transaction(function(tx) {
-        var rs = tx.executeSql('SELECT * FROM top10  ');
+        var rs = tx.executeSql('SELECT * FROM top10  LIMIT 10');
 
         for (var i=0;  rs.rows.length;i++){
 

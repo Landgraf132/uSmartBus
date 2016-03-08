@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import QtQuick.LocalStorage 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Window 2.2
@@ -18,14 +18,72 @@ MainView {
 
 
 
-  property var locale: Qt.locale()
+    property var locale: Qt.locale()
     property date currentTime: new Date()
-      property string timeString
+    property string timeString
     width: mainview.width
     height: mainview.height
-    Page {
-          title: "Расписание транспорта"
 
+
+
+    Page {
+
+
+header: PageHeader {
+id:pageHeaderId
+
+
+
+title:  "     "+Main.getCurrentStantionInfo("name");
+Button{
+     color:"#00000000"
+    id:headButton
+    height:parent.height;
+    width:units.gu(7)
+Icon {
+    anchors.verticalCenter: parent.verticalCenter;
+        id: leavePage
+width:units.gu(4)
+height:units.gu(4)
+    name: "back"
+    color: "#ffffff"
+}
+onClicked: pageStack.pop();
+      }
+                    StyleHints {
+                        foregroundColor: "white"
+                        backgroundColor: UbuntuColors.blue
+                        dividerColor: UbuntuColors.ash
+                        contentHeight: units.gu(7)
+                    }
+
+
+                    trailingActionBar {
+                        actions: [
+                            Action {
+                                iconName: "reload"
+                                           text: "reload"
+                                           onTriggered: {
+                                               currentTime=new Date();
+
+                                               timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
+                                               lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+timeString+"</b>" ;
+                                               Main.getTimetable();
+
+                                           }
+
+                            },
+                            Action {
+                                iconName: "starred"
+                                          text: "Favorite"
+                                          onTriggered: {
+
+
+                                          }
+                            }
+                        ]
+                    }
+        }
 
         Column {
             spacing: units.gu(1)
@@ -33,154 +91,213 @@ MainView {
                 margins: units.gu(2)
                 fill: parent
             }
-
-    height:80
-    Item {
-        Timer {
-            interval: 6500; running: true; repeat: true
-            onTriggered: {
-                 Main.getTimetable();
-                currentTime=new Date();
-                timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
-                lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+ timeString+"</b>" ;
-
-               }
-        }
+            Item {
+                id: rootItem
+                // create a model item instance
 
 
-    }
 
-            Button{
+                ListModel {
+                    id: timetableModel
 
-id:reloadButton
- anchors.right:parent.right;
-             text:"Обновить\Получить данные";
-            onClicked:{
-currentTime=new Date();
-
-                timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
-                lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+timeString+"</b>" ;
-                 Main.getTimetable();
+                }
             }
+            height:80
+            Item {
+                Timer {
+                    interval: 6500; running: true; repeat: true
+                    onTriggered: {
+                        Main.getTimetable();
+                        currentTime=new Date();
+                        timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
+                        lastTimeUpdate.text= "Последний раз обновлялось в: "+"<b>"+ timeString+"</b>" ;
+
+                    }
+                }
+
+
             }
+
+            Label{
+                fontSize: "large";
+                anchors.top:parent.top;
+                anchors.topMargin: units.gu(6);
+                id:stantionDescr;
+                anchors.left:parent.left;
+                text:Main.getCurrentStantionInfo("descr");
+            }
+
+
             Label{
 
-                anchors.top:reloadButton.top
-                anchors.topMargin:units.gu(5);
+                anchors.top:stantionDescr.top;
+                anchors.topMargin:units.gu(4);
                 id:lastTimeUpdate
-          anchors.right:parent.right;
-            text:"Последний раз обновлялось в: -"
-            }
-
-            Item {
-                 id: rootItem
-                 // create a model item instance
-
-
-
-                 ListModel {
-                     id: timetableModel
-
-                 }
+                anchors.left:parent.left;
+                text:"Последний раз обновлялось в: -"
             }
 
 
 
+            //Title Table
+            Row{
+                id:rowTable
+                width:parent.width;height:units.gu(6);
+                anchors.top:lastTimeUpdate.bottom;
+                anchors.topMargin: units.gu(2);
+                Rectangle{
 
- ListView  {
-    Component.onCompleted: { Main.getTimetable();}
-        width:anchors.width; height:units.gu(6);
-anchors.top:lastTimeUpdate.top
-anchors.topMargin:units.gu(10);
- Component{
-      id:timetableDelegate
-
-Rectangle{
-
-color:"#888888"
-    width:parent.width;height:units.gu(6);
-id:blockTimetableListModel
-  Row{
-      id:rowAll
-       width:parent.width;height:parent.height;
-Rectangle{
-
-    id:rectBusNameBlock
-    width:units.gu(8);height:parent.height;
-color: "#FEFEFE"
-
-        Rectangle{
-            id:rectBusNameText
-            width:units.gu(8) ;height:units.gu(4);
-              color: "#fc4949"
+                    id:rectBusNameBlockTitle
+                    width:units.gu(9);height:parent.height;
+                    color: "#FEFEFE"
 
 
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter:parent.horizontalCenter
-              Text{
+                    Text{
 
-        id:itemBusName
-        color: "#ffffff"
+                        id:itemBusNameTitle
 
 
-         anchors.horizontalCenter: rectBusNameText.horizontalCenter
-        anchors.verticalCenter: rectBusNameText.verticalCenter
-          font.pixelSize:  units.dp(16)
-        text:busName
-        font.bold: true
-              }
+                        color:"#666A6D";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize:  units.dp(13)
+                        text:"Маршрут"
+
+                    }
+
+                }
+
+
+                Rectangle{
+
+                    id:rectTimeLeftTitle
+                    width:units.gu(13);height:parent.height;
+                    color: "#EBEFF2"
+
+                    Text{
+                        id:itemTimeLeftTitle
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter:parent.horizontalCenter
+                        color:"#666A6D";
+                        font.pixelSize:  units.dp(13)
+                        text:"Будет через"
+
+                    }
+                }
+                Rectangle{
+                    color: "#FEFEFE"
+                    width:mainview.width-rectTimeLeftTitle.width-rectBusNameBlockTitle.width  ;height:parent.height;
+                    anchors.right: timetableDelegate.right
+                    Text{
+                        id:itemDirect
+
+
+                        color:"#666A6D";
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter:parent.horizontalCenter
+                        font.pixelSize:  units.dp(13)
+                        text:"Куда направляется"
+                    }
+                }
+            }
+
+
+
+
+            ListView  {
+                Component.onCompleted: { Main.getTimetable();}
+                width:anchors.width; height:units.gu(6);
+                anchors.top:rowTable.bottom;
+                anchors.topMargin:units.gu(21);
+                Component{
+                    id:timetableDelegate
+
+                    Rectangle{
+
+                        color:"#888888"
+                        width:parent.width;height:units.gu(6);
+                        id:blockTimetableListModel
+                        Row{
+                            id:rowAll
+                            width:parent.width;height:parent.height;
+                            Rectangle{
+
+                                id:rectBusNameBlock
+                                width:units.gu(9);height:parent.height;
+                                color: "#FEFEFE"
+
+                                Rectangle{
+                                    id:rectBusNameText
+                                    width:units.gu(8) ;height:units.gu(4);
+                                    color: "#fc4949"
+
+
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.horizontalCenter:parent.horizontalCenter
+                                    Text{
+
+                                        id:itemBusName
+                                        color: "#ffffff"
+
+
+                                        anchors.horizontalCenter: rectBusNameText.horizontalCenter
+                                        anchors.verticalCenter: rectBusNameText.verticalCenter
+                                        font.pixelSize:  units.dp(14)
+                                        text:busName
+                                        font.bold: true
+                                    }
+                                }
+                            }
+
+
+                            Rectangle{
+
+                                id:rectTimeLeft
+                                width:units.gu(13);height:parent.height;
+                                color: "#EBEFF2"
+
+                                Text{
+                                    id:itemTimeLeft
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.horizontalCenter:parent.horizontalCenter
+                                    color:"#666A6D";
+                                    font.pixelSize:  units.dp(13)
+                                    text:timeLeft
+                                    font.bold: true
+                                }
+                            }
+                            Rectangle{
+                                color: "#FEFEFE"
+                                width:mainview.width-rectTimeLeft.width-rectBusNameBlock.width  ;height:parent.height;
+                                anchors.right: timetableDelegate.right
+                                Text{
+                                    id:itemDirect
+
+
+                                    color:"#666A6D";
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.horizontalCenter:parent.horizontalCenter
+                                    font.pixelSize:  units.dp(14)
+                                    text:direct
+                                }
+                            }
+                        }
+
+                    }
+                }
+                id:timetableListView
+
+                spacing:1
+                anchors.fill:parent
+                model:timetableModel
+                delegate:timetableDelegate
+
+
+            }
+
         }
-}
 
 
-Rectangle{
 
-    id:rectTimeLeft
-    width:units.gu(8);height:parent.height;
-    color: "#EBEFF2"
-anchors.left: rectBusNameText.right
-    Text{
-        id:itemTimeLeft
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter:parent.horizontalCenter
-color:"#666A6D";
-           font.pixelSize:  units.dp(16)
-        text:timeLeft
- font.bold: true
     }
-}
-Rectangle{
-    color: "#FEFEFE"
-    width:mainview.width-rectTimeLeft.width-rectBusNameBlock.width  ;height:parent.height;
-anchors.right: timetableDelegate.right
-    Text{
-        id:itemDirect
-
-
-color:"#666A6D";
- anchors.verticalCenter: parent.verticalCenter
- anchors.horizontalCenter:parent.horizontalCenter
-          font.pixelSize:  units.dp(16)
-        text:direct
-    }
-}
-}
-
-           }
- }
-    id:timetableListView
-
- spacing:1
-    anchors.fill:parent
- model:timetableModel
-    delegate:timetableDelegate
-
-
-}
-
-}
-
-
-
-}
 }

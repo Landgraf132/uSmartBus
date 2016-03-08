@@ -1,6 +1,6 @@
 {
     "name": "usmartbus.landgraf",
-    "description": "description of uSmartBus",
+    "description": "Ubuntu smartbus application for Russia service Bus62",
     "architecture": "@CLICK_ARCH@",
     "title": "uSmartBus",
     "hooks": {
@@ -9,7 +9,7 @@
             "desktop": "uSmartBus/uSmartBus.desktop"
         }
     },
-    "version": "0.5",
+    "version": "0.912",
     "maintainer": "Ustin Anton <Landgraf132@yandex.ru>",
-    "framework": "ubuntu-sdk-15.04"
+    "framework": "ubuntu-sdk-15.04.1"
 }
