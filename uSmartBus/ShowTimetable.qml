@@ -52,8 +52,8 @@ onClicked: pageStack.pop();
       }
                     StyleHints {
                         foregroundColor: "white"
-                        backgroundColor: UbuntuColors.blue
-                        dividerColor: UbuntuColors.ash
+                        backgroundColor: "#996BC1"
+                        dividerColor: "#762572"
                         contentHeight: units.gu(7)
                     }
 

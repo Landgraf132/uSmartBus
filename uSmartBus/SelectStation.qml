@@ -17,7 +17,7 @@ MainView {
 
 
 
-    headerColor: UbuntuColors.purple
+    headerColor: "#EEF2F5"
   width: mainview.width
   height: mainview.height
     Page {
@@ -45,8 +45,8 @@ MainView {
 
                               StyleHints {
                                   foregroundColor: "white"
-                                  backgroundColor: UbuntuColors.purple
-                                  dividerColor:  "#974B93"
+                                  backgroundColor: "#996BC1"
+                                  dividerColor:  "#762572"
                                   contentHeight: units.gu(7)
                               }
 
@@ -114,8 +114,8 @@ anchors.left:parent.left;
 
  onClicked:{
 
-pageStack.push(Qt.resolvedUrl("ShowTimetable.qml"));
-  Main.chooseStation(itemStation.text,itemStationId.text,itemStationDescryption.text);
+     Main.chooseStation(itemStation.text,itemStationId.text,itemStationDescryption.text);
+   pageStack.push(Qt.resolvedUrl("ShowTimetable.qml"));
 
  }
 
